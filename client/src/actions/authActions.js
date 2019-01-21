@@ -6,15 +6,16 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types';
 
 //register
 export const registerUser = (userData, history) => dispatch => {
-  axios
-    .post('/api/users/register', userData)
-    .then(res => history.push('/login')) //redirect to login on successful register
-    .catch(err =>
+  axios.post('/api/users/register', userData).then((res, err) => {
+    if (err) {
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+        payload: err.res.data
+      });
+    } else {
+      history.push('/login');
+    }
+  }); //redirect to login on successful register
 };
 
 export const loginUser = userData => dispatch => {
@@ -29,7 +30,7 @@ export const loginUser = userData => dispatch => {
       //decode token to get user data
       const decoded = jwt_decode(token);
       //set current user
-      dispatch(setCurrentUSer(decoded));
+      dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
       dispatch({
@@ -40,10 +41,17 @@ export const loginUser = userData => dispatch => {
 };
 
 //setting the current user
-export const setCurrentUSer = decoded => {
+export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,
     payload: decoded
+  };
+};
+
+// User loading
+export const setUserLoading = () => {
+  return {
+    type: USER_LOADING
   };
 };
 
@@ -53,5 +61,5 @@ export const logoutUser = () => dispatch => {
   //remove Auth header for future requests
   setAuthToken(false);
   //set current user to empty object which will set isAuthenticated to false
-  dispatch(setCurrentUSer({}));
+  dispatch(setCurrentUser({}));
 };

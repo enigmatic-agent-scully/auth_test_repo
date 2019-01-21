@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 class Landing extends Component {
   render() {
     return (
@@ -8,8 +9,8 @@ class Landing extends Component {
             className='col s12 center-align'
             style={{ padding: '0 .75rem 0 18rem' }}
           >
-            <button
-              // href='/register'
+            <a
+              href='/register'
               style={{
                 width: '150px',
                 borderRadius: '3px',
@@ -18,9 +19,9 @@ class Landing extends Component {
               className='btn btn-large waves-effect waves-light hoverable blue accent-3'
             >
               Register
-            </button>
-            <button
-              // href='/login'
+            </a>
+            <a
+              href='/login'
               style={{
                 marginLeft: '2rem',
                 width: '150px',
@@ -30,7 +31,7 @@ class Landing extends Component {
               className='btn btn-large waves-effect white hoverable black-text'
             >
               Log In
-            </button>
+            </a>
           </div>
         </div>
       </div>

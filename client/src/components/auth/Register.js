@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/authActions';
@@ -15,6 +15,13 @@ class Register extends Component {
       password2: '',
       errors: {}
     };
+  }
+
+  componentDidMount() {
+    // if logged in user navigates to /register, redirect to /dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -52,15 +59,15 @@ class Register extends Component {
         <div className='container'>
           <div className='row'>
             <div className='col s8 offset-s2'>
-              <Link to='/' className='btn-flat waves-effect'>
+              <a href='/' className='btn-flat waves-effect'>
                 <i className='material-icons'>backspace</i>Back to Home
-              </Link>
+              </a>
               <div className='col s12' style={{ paddingLeft: '11.250px' }}>
                 <h4>
                   <b>Register</b> below
                 </h4>
                 <p className='grey-text text-darken-1'>
-                  Already have an account? <Link to='/login'>Log in</Link>
+                  Already have an account? <a href='/login'>Log in</a>
                 </p>
               </div>
               <form noValidate onSubmit={this.onSubmit}>
