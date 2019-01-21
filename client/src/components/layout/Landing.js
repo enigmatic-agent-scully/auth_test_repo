@@ -4,9 +4,12 @@ class Landing extends Component {
     return (
       <div style={{ height: '75vh' }} className='container valign-wrapper'>
         <div className='row'>
-          <div className='col s12 center-align'>
-            <a
-              href='/register'
+          <div
+            className='col s12 center-align'
+            style={{ padding: '0 .75rem 0 18rem' }}
+          >
+            <button
+              // href='/register'
               style={{
                 width: '150px',
                 borderRadius: '3px',
@@ -15,9 +18,9 @@ class Landing extends Component {
               className='btn btn-large waves-effect waves-light hoverable blue accent-3'
             >
               Register
-            </a>
-            <a
-              href='/login'
+            </button>
+            <button
+              // href='/login'
               style={{
                 marginLeft: '2rem',
                 width: '150px',
@@ -27,7 +30,7 @@ class Landing extends Component {
               className='btn btn-large waves-effect white hoverable black-text'
             >
               Log In
-            </a>
+            </button>
           </div>
         </div>
       </div>
