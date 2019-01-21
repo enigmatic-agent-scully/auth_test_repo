@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
 // setting the initial app state
 const initialState = {};
@@ -9,7 +10,7 @@ const middleware = [thunk];
 
 // createStore creates a redux store that holds the app's complete state tree
 const store = createStore(
-  () => [],
+  rootReducer,
   initialState,
   compose(
     applyMiddleware(...middleware),
