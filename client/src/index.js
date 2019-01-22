@@ -16,16 +16,18 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// check for token to keep user logged in
+// check for token in local storage to keep user logged in
 if (localStorage.jwtToken) {
-  // set auth token header
+  // set axios auth token header
   const token = localStorage.jwtToken;
   setAuthToken(token);
   // decode token and get user info and exp
   const decoded = jwt_decode(token);
-  // set user and isAuthenticated
+
+  // store user info and auth status in Redux store
   store.dispatch(setCurrentUser(decoded));
 
+  //check if auth token is expired; if so, redirect to login
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());

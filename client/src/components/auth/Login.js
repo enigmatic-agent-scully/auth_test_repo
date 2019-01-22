@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../actions/authActions';
@@ -18,6 +18,7 @@ class Login extends Component {
   componentDidMount() {
     // if logged in user navigates to /register, redirect to /dashboard
     if (this.props.auth.isAuthenticated) {
+      console.log(this.props);
       this.props.history.push('/dashboard');
     }
   }
@@ -66,7 +67,7 @@ class Login extends Component {
                   <b>Login</b> below
                 </h4>
                 <p className='grey-text text-darken-1'>
-                  Don't have an account? <Link to='/register'>Register</Link>
+                  Don't have an account? <a href='/register'>Register</a>
                 </p>
               </div>
               <form noValidate onSubmit={this.onSubmit}>
@@ -130,7 +131,7 @@ class Login extends Component {
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object
 };
 
 const mapStateToProps = state => ({

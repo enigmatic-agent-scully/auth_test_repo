@@ -65,7 +65,7 @@ router.post('/login', (req, res) => {
           payload,
           keys.secretOrKey,
           {
-            expiresIn: 31556926
+            expiresIn: 3155
           },
           (err, token) => {
             res.json({
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
         );
       } else {
         return res
-          .status(400)
+          .status(401)
           .json({ passwordIncorrect: 'Password incorrect' });
       }
     });

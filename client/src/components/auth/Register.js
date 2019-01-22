@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../actions/authActions';
 import classnames from 'classnames';
+import Navbar from './../layout/Navbar';
 
 class Register extends Component {
   constructor() {
@@ -57,6 +58,7 @@ class Register extends Component {
     return (
       <Router>
         <div className='container'>
+          <Navbar />
           <div className='row'>
             <div className='col s8 offset-s2'>
               <a href='/' className='btn-flat waves-effect'>
@@ -145,7 +147,7 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object
 };
 
 const mapStateToProps = state => ({
